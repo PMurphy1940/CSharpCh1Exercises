@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace linq {
@@ -86,6 +87,21 @@ namespace linq {
             int HowMany = numbers.Count ();
 
             Console.WriteLine ($"There are {HowMany} numbers in the list");
+            // How much money have we made?
+            List<double> purchases = new List<double> () {
+                2340.29,
+                745.31,
+                21.76,
+                34.03,
+                4786.45,
+                879.45,
+                9442.85,
+                2454.63,
+                45.65
+            };
+            double RollinInTheDough = purchases.Sum ();
+            Console.WriteLine ($"Who needs school when my bank account looks like this => {RollinInTheDough.ToString("C", CultureInfo.CurrentCulture)}");
+
         }
     }
 }

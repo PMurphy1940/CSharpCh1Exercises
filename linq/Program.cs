@@ -40,7 +40,39 @@ namespace linq {
             foreach (var number in fourSixMultiples) {
                 Console.WriteLine ($"{number} is a multiple of 4 or 6");
             }
+            // Order these student names alphabetically, in descending order (Z to A)
+            List<string> names = new List<string> () {
+                "Heather",
+                "James",
+                "Xavier",
+                "Michelle",
+                "Brian",
+                "Nina",
+                "Kathleen",
+                "Sophia",
+                "Amir",
+                "Douglas",
+                "Zarley",
+                "Beatrice",
+                "Theodora",
+                "William",
+                "Svetlana",
+                "Charisse",
+                "Yolanda",
+                "Gregorio",
+                "Jean-Paul",
+                "Evangelina",
+                "Viktor",
+                "Jacqueline",
+                "Francisco",
+                "Tre"
+            };
 
+            List<string> descend = names.OrderByDescending (n => n).ToList ();
+
+            foreach (string name in descend) {
+                Console.WriteLine (name);
+            }
         }
     }
 }

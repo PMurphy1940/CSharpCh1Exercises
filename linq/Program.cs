@@ -102,6 +102,45 @@ namespace linq {
             double RollinInTheDough = purchases.Sum ();
             Console.WriteLine ($"Who needs school when my bank account looks like this => {RollinInTheDough.ToString("C", CultureInfo.CurrentCulture)}");
 
+            // What is our most expensive product?
+            List<double> prices = new List<double> () {
+                879.45,
+                9442.85,
+                2454.63,
+                45.65,
+                2340.29,
+                34.03,
+                4786.45,
+                745.31,
+                21.76
+            };
+            double TheMostest = prices.Max ();
+            Console.WriteLine ($"This is the most expensive computer I've ever purchased. {TheMostest.ToString("C", CultureInfo.CurrentCulture)}");
+
+            List<int> wheresSquaredo = new List<int> () {
+                66,
+                12,
+                8,
+                27,
+                82,
+                34,
+                7,
+                50,
+                19,
+                46,
+                81,
+                23,
+                30,
+                4,
+                68,
+                14
+            };
+            List<int> garbageCan = wheresSquaredo.TakeWhile (n => n != (Math.Round (Math.Sqrt (n)) * Math.Round (Math.Sqrt (n)))).ToList ();
+
+            Console.WriteLine ("Garbage Can");
+            foreach (var num in garbageCan) {
+                Console.WriteLine ($"{num} in garbageCan");
+            }
         }
     }
 }

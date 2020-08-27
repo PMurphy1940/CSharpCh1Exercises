@@ -73,6 +73,19 @@ namespace linq {
             foreach (string name in descend) {
                 Console.WriteLine (name);
             }
+            // Build a collection of these numbers sorted in ascending order
+
+            List<int> AscendingNumbers = numbers.OrderBy (n => n).ToList ();
+            Console.WriteLine ("----Ascending Numbers----");
+            foreach (var number in AscendingNumbers) {
+                Console.WriteLine (number);
+            }
+
+            // Output how many numbers are in this list
+
+            int HowMany = numbers.Count ();
+
+            Console.WriteLine ($"There are {HowMany} numbers in the list");
         }
     }
 }

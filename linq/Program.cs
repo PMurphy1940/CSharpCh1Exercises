@@ -141,6 +141,7 @@ namespace linq {
             foreach (var num in garbageCan) {
                 Console.WriteLine ($"{num} in garbageCan");
             }
+
         }
     }
 }

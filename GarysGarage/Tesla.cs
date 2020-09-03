@@ -8,12 +8,22 @@ namespace GarysGarage {
         public int Doors { get; set; }
         public void ChargeBattery () {
             /* Incrementally charge the batteries */
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.Clear ();
             Console.WriteLine ($"Charging {MainColor} Tesla");
             Console.WriteLine ("Charging...");
             Console.WriteLine ($"Battery at ");
 
             do {
+                if (CurrentChargePercentage < 25) {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                } else if (CurrentChargePercentage > 25 && CurrentChargePercentage < 50) {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                } else if (CurrentChargePercentage > 50 && CurrentChargePercentage < 75) {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                } else if (CurrentChargePercentage > 75 && CurrentChargePercentage < 100) {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                };
                 Console.Write ($"{CurrentChargePercentage}%");
                 System.Threading.Thread.Sleep (300);
                 CurrentChargePercentage += 3;

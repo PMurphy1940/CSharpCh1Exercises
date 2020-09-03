@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace GarysGarage {
     class Program {
         static void Main (string[] args) {
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.Clear ();
             Zero fxs = new Zero () {
                 MainColor = "Electric blue",
@@ -22,11 +23,17 @@ namespace GarysGarage {
             };
             Cessna mx410 = new Cessna () {
                 MainColor = "White",
+                FuelCapacity = 150.0,
+                StartingTankLevel = 19.0,
+                CurrentTankPercentage = "1/8",
                 Wings = "mostly intact"
             };
 
             Ram definitelyNotAnF150 = new Ram () {
                 MainColor = "Yellow",
+                FuelCapacity = 35.0,
+                StartingTankLevel = 3.0,
+                CurrentTankPercentage = "1/8",
                 AddOns = "gun rack"
             };
 
@@ -46,10 +53,6 @@ namespace GarysGarage {
                 ev.ChargeBattery ();
             }
 
-            foreach (IElectricVehicle ev in electricVehicles) {
-                Console.WriteLine ($"{ev.CurrentChargePercentage}");
-            }
-
             /***********************************************/
 
             // fxs.Drive ();
@@ -64,27 +67,35 @@ namespace GarysGarage {
             // definitelyNotAnF150.Drive ();
             // definitelyNotAnF150.Turn ();
             // definitelyNotAnF150.Stop ();
+
+            List<IGasolineVehicles> gasVehicles = new List<IGasolineVehicles> () {
+                definitelyNotAnF150,
+                mx410
+            };
+
+            Console.WriteLine ("Gas Vehicles");
+            foreach (IGasolineVehicles gv in gasVehicles) {
+                Console.WriteLine ($"{gv.CurrentTankPercentage}");
+            }
+
+            foreach (IGasolineVehicles gv in gasVehicles) {
+                // This should completely refuel the gas tank
+                gv.RefuelTank ();
+            }
+            Console.Clear ();
+            foreach (IElectricVehicle ev in electricVehicles) {
+                string type = ev.GetType ().ToString ();
+                string[] splitType = type.Split ('.');
+                Console.WriteLine ($"{ev.MainColor} {splitType[1]} batteries charged to");
+                Console.WriteLine ($"{ev.CurrentChargePercentage}%");
+            }
+
+            foreach (IGasolineVehicles gv in gasVehicles) {
+                string type = gv.GetType ().ToString ();
+                string[] splitType = type.Split ('.');
+                Console.WriteLine ($"{gv.MainColor} {splitType[1]} fuel tank at");
+                Console.WriteLine ($"{gv.CurrentTankPercentage}");
+            }
         }
-
-        // List<???> gasVehicles = new List<???>() {
-        //         definitelyNotAnF150, mx410
-        //     };
-
-        //     Console.WriteLine("Gas Vehicles");
-        //     foreach(??? gv in gasVehicles)
-        //     {
-        //         Console.WriteLine($"{gv.CurrentTankPercentage}");
-        //     }
-
-        //     foreach(??? gv in gasVehicles)
-        //     {
-        //         // This should completely refuel the gas tank
-        //         gv.RefuelTank();
-        //     }
-
-        //     foreach(??? gv in gasVehicles)
-        //     {
-        //         Console.WriteLine($"{gv.CurrentTankPercentage}");
-        //     }
     }
 }

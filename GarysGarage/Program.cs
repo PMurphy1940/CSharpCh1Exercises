@@ -86,16 +86,51 @@ namespace GarysGarage {
             foreach (IElectricVehicle ev in electricVehicles) {
                 string type = ev.GetType ().ToString ();
                 string[] splitType = type.Split ('.');
-                Console.WriteLine ($"{ev.MainColor} {splitType[1]} batteries charged to");
-                Console.WriteLine ($"{ev.CurrentChargePercentage}%");
+                string message =
+                    $"{ev.MainColor} {splitType[1]} batteries charged to {ev.CurrentChargePercentage}%";
+                MooseSays (message);
             }
 
             foreach (IGasolineVehicles gv in gasVehicles) {
                 string type = gv.GetType ().ToString ();
                 string[] splitType = type.Split ('.');
-                Console.WriteLine ($"{gv.MainColor} {splitType[1]} fuel tank at");
-                Console.WriteLine ($"{gv.CurrentTankPercentage}");
+                string message = $"{gv.MainColor} {splitType[1]} fuel tank {gv.CurrentTankPercentage}";
+                MooseSays (message);
             }
+        }
+
+        static void MooseSays (string message) {
+            Console.Clear ();
+            Console.WriteLine ($@"
+                                      _.--^^^--,
+                                    .'          `\
+  .-^^^^^^-.                      .'              |
+ /          '.                   /            .-._/
+|             `.                |             |
+ \              \          .-._ |          _   \
+  `^^'-.         \_.-.     \   `          ( \__/
+        |             )     '=.       .,   \
+       /             (         \     /  \  /
+     /`               `\        |   /    `'
+     '..-`\        _.-. `\ _.__/   .=.
+          |  _    / \  '.-`    `-.'  /
+          \_/ |  |   './ _     _  \.'
+               '-'    | /       \ |
+                      |  .-. .-.  |
+                      \ / o| |o \ /
+                       |   / \   |    {message}
+                      / `^`   `^` \
+                     /             \
+                    | '._.'         \
+                    |  /             |
+                     \ |             |
+                      ||    _    _   /
+                      /|\  (_\  /_) /
+                      \ \'._  ` '_.'
+                       `^^` `^^^`
+
+    Press Any Key To Continue");
+            Console.ReadKey ();
         }
     }
 }
